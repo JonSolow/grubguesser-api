@@ -4,13 +4,11 @@ import urllib
 from keras.preprocessing.image import array_to_img, img_to_array
 
 
-def preprocess(img):
+def preprocess(img: np.ndarray) -> np.ndarray:
     img = array_to_img(img, scale=False)
     img = img.resize((224, 224))
     img = img_to_array(img)
     return img / 255.0
-
-
 
 
 def handle_url(url: str) -> np.ndarray:
