@@ -1,0 +1,6 @@
+keras
+tensorflow
+fastapi
+uvicorn
+scikit-image
+numpy
