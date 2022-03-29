@@ -1,5 +1,5 @@
 keras
-tensorflow
+tensorflow-cpu
 fastapi
 uvicorn
 scikit-image
