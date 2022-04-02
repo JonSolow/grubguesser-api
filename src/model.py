@@ -55,5 +55,6 @@ CNN.load_weights(
     get_file(
         "weights.hdf5",
         MODEL_HDF5_PATH,
+        cache_dir="."
     )
 )
