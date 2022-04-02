@@ -5,6 +5,7 @@ from config import MODEL_HDF5_PATH
 
 LABELS = np.loadtxt("labels.txt", dtype=object, delimiter="\n")
 
+
 def initialize_model():
     # import the necessary packages
     from keras.models import Sequential
