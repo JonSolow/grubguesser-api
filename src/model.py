@@ -1,5 +1,4 @@
 import numpy as np
-import tensorflow as tf
 from keras.utils.data_utils import get_file
 from config import MODEL_HDF5_PATH
 
@@ -57,5 +56,3 @@ CNN.load_weights(
         MODEL_HDF5_PATH,
     )
 )
-
-GRAPH = tf.compat.v1.get_default_graph()
