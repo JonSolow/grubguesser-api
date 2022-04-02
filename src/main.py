@@ -1,4 +1,5 @@
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, HTTPException, status, Header
+
 from handler import handle_file, handle_url
 from predict import predict_model
 
@@ -17,8 +18,21 @@ async def predict_url(url: str):
     return model_output
 
 
+def validate_image_content(content_type: str = Header(...)):
+    """Require request MIME-type to be application/vnd.api+json"""
+
+    content_main_type = content_type.split("/")[0]
+    if content_main_type != "image":
+        raise HTTPException(
+            status.HTTP_415_UNSUPPORTED_MEDIA_TYPE,
+            f"Unsupported media type: {content_type}."
+            " It must be image/",
+        )
+
+
 @app.post("/predict_file")
-async def create_file(upload_file: UploadFile = File(...)):
+async def predict_file(upload_file: UploadFile = File(...)):
+    validate_image_content(upload_file.content_type)
     model_input = handle_file(await upload_file.read())
     model_output = predict_model(model_input)
     return model_output
