@@ -18,8 +18,13 @@ async def predict_url(url: str):
     return model_output
 
 
+@app.get("/healthcheck")
+async def healthcheck():
+    return {"status": "alive"}
+
+
 def validate_image_content(content_type: str = Header(...)):
-    """Require request MIME-type to be application/vnd.api+json"""
+    """Require request MIME-type to be image/*"""
 
     content_main_type = content_type.split("/")[0]
     if content_main_type != "image":
